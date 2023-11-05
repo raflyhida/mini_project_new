@@ -1,3 +1,5 @@
+// ignore_for_file: library_private_types_in_public_api
+
 import 'dart:async';
 import 'dart:math' show pi;
 
@@ -12,7 +14,7 @@ class QiblahCompass extends StatefulWidget {
   const QiblahCompass({super.key});
 
   @override
-  // ignore: library_private_types_in_public_api
+  
   _QiblahCompassState createState() => _QiblahCompassState();
 }
 
@@ -23,8 +25,6 @@ class _QiblahCompassState extends State<QiblahCompass> {
   get stream => _locationStreamController.stream;
 
   Future<void> _checkLocationStatus() async {
-    // before running the app please enable your location
-
     final locationStatus = await FlutterQiblah.checkLocationStatus();
     if (locationStatus.enabled &&
         locationStatus.status == LocationPermission.denied) {

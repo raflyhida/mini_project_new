@@ -1,19 +1,18 @@
 import 'package:animated_splash_screen/animated_splash_screen.dart';
-import 'package:aplikasi_bacaan_solat/provider/provider_bacaan_solat.dart';
-import 'package:aplikasi_bacaan_solat/provider/provider_daftar_kota.dart';
+import 'package:aplikasi_bacaan_solat/view/provider/provider_arah_kiblat.dart';
+import 'package:aplikasi_bacaan_solat/view/provider/provider_bacaan_solat.dart';
+import 'package:aplikasi_bacaan_solat/view/provider/provider_daftar_kota.dart';
 
-import 'package:aplikasi_bacaan_solat/provider/provider_jadwal_solat.dart';
-import 'package:aplikasi_bacaan_solat/provider/provider_niat_sholat.dart';
-import 'package:aplikasi_bacaan_solat/screens/main_page.dart';
+import 'package:aplikasi_bacaan_solat/view/provider/provider_jadwal_solat.dart';
+import 'package:aplikasi_bacaan_solat/view/provider/provider_niat_sholat.dart';
+import 'package:aplikasi_bacaan_solat/view/provider/provider_page_sholat.dart';
+import 'package:aplikasi_bacaan_solat/view/screens/main_page.dart';
 
 //import 'package:aplikasi_bacaan_solat/services/api_services.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 void main() async {
- 
- 
-
   // await ApiServices().fetchData();
   runApp(
     MultiProvider(
@@ -21,6 +20,13 @@ void main() async {
           ChangeNotifierProvider<JadwalSholatApi>(
             create: (context) => JadwalSholatApi(),
           ),
+          ChangeNotifierProvider<ArahKiblatProvider>(
+            create: (context) => ArahKiblatProvider(),
+          ),
+          ChangeNotifierProvider<PageSholatProvider>(
+            create: (context) => PageSholatProvider(),
+          ),
+          
           ChangeNotifierProvider(
             create: (_) => NiatSholatProvider(),
           ),
@@ -30,8 +36,8 @@ void main() async {
         child: const MaterialApp(
             debugShowCheckedModeBanner: false, home: SplashScreen())),
   );
-   final dataKotaJson = JadwalSholatJson();
-   await dataKotaJson.fetchDataKota();
+  final dataKotaJson = JadwalSholatJson();
+  await dataKotaJson.fetchDataKota();
 }
 
 class SplashScreen extends StatelessWidget {

@@ -16,7 +16,5 @@ class JadwalSholatApi extends ChangeNotifier {
       debugPrint("Error: $error");
     }
     notifyListeners();
-    
   }
-  
 }

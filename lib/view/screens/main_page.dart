@@ -1,9 +1,10 @@
-import 'package:aplikasi_bacaan_solat/page/arah_kiblat.dart';
-import 'package:aplikasi_bacaan_solat/page/ayat_kusi_page.dart';
-import 'package:aplikasi_bacaan_solat/page/bacaan-sholat_page.dart';
+import 'package:aplikasi_bacaan_solat/view/screens/arah_kiblat_page.dart';
+import 'package:aplikasi_bacaan_solat/view/screens/ayat_kusi_page.dart';
+import 'package:aplikasi_bacaan_solat/view/screens/bacaan-sholat_page.dart';
 
-import 'package:aplikasi_bacaan_solat/page/niat_sholat_page.dart';
-import 'package:aplikasi_bacaan_solat/page/page_jadwal_sholat.dart';
+import 'package:aplikasi_bacaan_solat/view/screens/niat_sholat_page.dart';
+import 'package:aplikasi_bacaan_solat/view/screens/page_jadwal_sholat.dart';
+import 'package:aplikasi_bacaan_solat/view/screens/smartphone.dart';
 
 import 'package:flutter/material.dart';
 
@@ -17,13 +18,12 @@ class MainPage extends StatelessWidget {
         appBar: AppBar(
           title: const Text(
             "Aplikasi Bacaan Shalat ",
-            style: TextStyle(
-                color: Colors.amber), // Mengatur warna teks menjadi amber
+            style: TextStyle(color: Colors.amber),
           ),
           centerTitle: true,
-          backgroundColor: Colors.transparent, // Buat AppBar transparan
-          elevation: 0, // Hilangkan bayangan di bawah AppBar
-          actions: const [], // Anda dapat menambahkan action di sini jika diperlukan
+          backgroundColor: Colors.transparent,
+          elevation: 0,
+          actions: const [],
         ),
         backgroundColor: Colors.white,
         body: Padding(
@@ -43,6 +43,8 @@ class MainPage extends StatelessWidget {
                   context, "assets/images/kiblah.png", "Arah Kiblat"),
               _buildGridItem(context, "assets/images/gambar waktu solat.png",
                   "Waktu Sholat"),
+              _buildGridItem(
+                  context, "assets/images/gambar waktu solat.png", "OPENAI"),
             ],
           ),
         ),
@@ -77,11 +79,20 @@ class MainPage extends StatelessWidget {
               context,
               MaterialPageRoute(builder: (context) => const Kiblat()),
             );
+            break;
           case "Waktu Sholat":
             Navigator.push(
               context,
               MaterialPageRoute(builder: (context) => const PageHomeSholat()),
             );
+            break;
+          case "OPENAI":
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => const SmartphoneScreen()),
+            );
+            break;
+            
         }
       },
       child: Align(

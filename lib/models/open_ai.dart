@@ -1,21 +1,18 @@
 import 'dart:convert';
 
-HadisRasul hadisRasulFromJson(String str) =>
-    HadisRasul.fromJson(json.decode(str));
+GptData gptDataFromJson(Map<String, dynamic> map) => GptData.fromJson(map);
 
-String hadisRasulToJson(HadisRasul data) => json.encode(data.toJson());
+String gptDataToJson(GptData data) => json.encode(data.toJson());
 
-class HadisRasul {
-  String warning;
-  String id;
-  String object;
-  int created;
-  String model;
-  List<Choice> choices;
-  Usage usage;
+class GptData {
+  final String id;
+  final String object;
+  final int created;
+  final String model;
+  final List<Choice> choices;
+  final Usage usage;
 
-  HadisRasul({
-    required this.warning,
+  GptData({
     required this.id,
     required this.object,
     required this.created,
@@ -24,8 +21,7 @@ class HadisRasul {
     required this.usage,
   });
 
-  factory HadisRasul.fromJson(Map<String, dynamic> json) => HadisRasul(
-        warning: json["warning"],
+  factory GptData.fromJson(Map<String, dynamic> json) => GptData(
         id: json["id"],
         object: json["object"],
         created: json["created"],
@@ -36,7 +32,6 @@ class HadisRasul {
       );
 
   Map<String, dynamic> toJson() => {
-        "warning": warning,
         "id": id,
         "object": object,
         "created": created,
@@ -47,10 +42,10 @@ class HadisRasul {
 }
 
 class Choice {
-  String text;
-  int index;
-  dynamic logprobs;
-  String finishReason;
+  final String text;
+  final int index;
+  final dynamic logprobs;
+  final String finishReason;
 
   Choice({
     required this.text,
@@ -75,9 +70,9 @@ class Choice {
 }
 
 class Usage {
-  int promptTokens;
-  int completionTokens;
-  int totalTokens;
+  final int promptTokens;
+  final int completionTokens;
+  final int totalTokens;
 
   Usage({
     required this.promptTokens,

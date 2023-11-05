@@ -1,33 +1,32 @@
-
-import 'package:aplikasi_bacaan_solat/provider/provider_niat_sholat.dart';
+import 'package:aplikasi_bacaan_solat/view/provider/provider_bacaan_solat.dart';
 import 'package:flutter/material.dart';
 // ignore: library_prefixes
 
 import 'package:provider/provider.dart';
 
-class NiatSholat extends StatefulWidget {
-  const NiatSholat({super.key});
+class BacaanSholat extends StatefulWidget {
+  const BacaanSholat({super.key});
 
   @override
   // ignore: library_private_types_in_public_api
-  _NiatSholatState createState() => _NiatSholatState();
+  _BacaanSholatState createState() => _BacaanSholatState();
 }
 
-class _NiatSholatState extends State<NiatSholat> {
+class _BacaanSholatState extends State<BacaanSholat> {
   // ignore: non_constant_identifier_names
-  late NiatSholatProvider niatSholat;
+  late BacaanSholatProvider bacaanSholat;
   @override
   void initState() {
     super.initState();
 
-     niatSholat= Provider.of<NiatSholatProvider>(context, listen: false);
-    niatSholat.readJsonData();
+    bacaanSholat = Provider.of<BacaanSholatProvider>(context, listen: false);
+    bacaanSholat.readJsonData();
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: const Color(0xff0e1446),
       body: SafeArea(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -38,7 +37,7 @@ class _NiatSholatState extends State<NiatSholat> {
                   alignment: Alignment.topLeft,
                   child: IconButton(
                     onPressed: () => Navigator.of(context).pop(),
-                    icon: const Icon(Icons.arrow_back, color: Colors.black),
+                    icon: const Icon(Icons.arrow_back, color: Colors.white),
                   ),
                 ),
                 Align(
@@ -47,7 +46,7 @@ class _NiatSholatState extends State<NiatSholat> {
                     margin: const EdgeInsets.only(top: 80),
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(30),
-                        color: const Color(0xff0e1446)),
+                        color: const Color(0xff44aca0)),
                     height: 200,
                     width: MediaQuery.of(context).size.width,
                     child: Container(
@@ -57,14 +56,14 @@ class _NiatSholatState extends State<NiatSholat> {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             Text(
-                              "Niat Sholat Wajib",
+                              "Bacaan Sholat",
                               style: TextStyle(
                                   color: Colors.white,
                                   fontSize: 20,
                                   fontWeight: FontWeight.bold),
                             ),
                             Text(
-                              "Bacaan niat sholat wajib 5 waktu",
+                              "Bacaan sholat dari doa Iftitah sampai Salam",
                               style: TextStyle(
                                   color: Colors.white,
                                   fontSize: 12,
@@ -83,8 +82,10 @@ class _NiatSholatState extends State<NiatSholat> {
                       bottomRight: Radius.circular(30),
                     ),
                     child: Image.asset(
-                      "assets/images/bg_shalat.png",
+                      "assets/images/bg_doa.png",
                       width: 330,
+                      height: 200,
+                      fit: BoxFit.fitWidth,
                     ),
                   ),
                 ),
@@ -92,11 +93,10 @@ class _NiatSholatState extends State<NiatSholat> {
             ),
             const SizedBox(height: 10),
             Expanded(
-              child: Consumer<NiatSholatProvider>(
-              
+              child: Consumer<BacaanSholatProvider>(
                 builder: (context, value, child) {
-                 // ignore: unnecessary_null_comparison
-                 if (value.data != null) {
+                  // ignore: unnecessary_null_comparison
+                  if (value.data != null) {
                     var items = value.data;
                     return ListView.builder(
                         // ignore: unnecessary_null_comparison
@@ -127,53 +127,61 @@ class _NiatSholatState extends State<NiatSholat> {
                                           CrossAxisAlignment.center,
                                       children: [
                                         Expanded(
-                                            child: Container(
-                                          padding:
-                                              const EdgeInsets.only(bottom: 8),
-                                          child: Column(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.center,
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.start,
-                                            children: [
-                                              Padding(
-                                                padding: const EdgeInsets.only(
-                                                    left: 8, right: 8),
-                                                child: Text(
-                                                  items[index]
-                                                      .arabic
-                                                      .toString(),
-                                                  style: const TextStyle(
-                                                      fontSize: 16,
-                                                      fontWeight:
-                                                          FontWeight.bold),
-                                                ),
-                                              ),
-                                              Padding(
-                                                padding: const EdgeInsets.only(
-                                                    left: 8, right: 8),
-                                                child: Text(
-                                                  items[index].latin.toString(),
-                                                  style: const TextStyle(
-                                                      fontSize: 14,
-                                                      fontStyle:
-                                                          FontStyle.italic),
-                                                ),
-                                              ),
-                                              Padding(
-                                                padding: const EdgeInsets.only(
-                                                    left: 8, right: 8, top: 5),
-                                                child: Text(
+                                          child: Container(
+                                            padding: const EdgeInsets.only(
+                                                bottom: 8),
+                                            child: Column(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.center,
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.start,
+                                              children: [
+                                                Padding(
+                                                  padding:
+                                                      const EdgeInsets.only(
+                                                          left: 8, right: 8),
+                                                  child: Text(
                                                     items[index]
-                                                        .terjemahan
+                                                        .arabic
                                                         .toString(),
                                                     style: const TextStyle(
-                                                      fontSize: 12,
-                                                    )),
-                                              )
-                                            ],
+                                                        fontSize: 16,
+                                                        fontWeight:
+                                                            FontWeight.bold),
+                                                  ),
+                                                ),
+                                                Padding(
+                                                  padding:
+                                                      const EdgeInsets.only(
+                                                          left: 8, right: 8),
+                                                  child: Text(
+                                                    items[index]
+                                                        .latin
+                                                        .toString(),
+                                                    style: const TextStyle(
+                                                        fontSize: 14,
+                                                        fontStyle:
+                                                            FontStyle.italic),
+                                                  ),
+                                                ),
+                                                Padding(
+                                                  padding:
+                                                      const EdgeInsets.only(
+                                                          left: 8,
+                                                          right: 8,
+                                                          top: 5),
+                                                  child: Text(
+                                                      items[index]
+                                                          .terjemahan
+                                                          .toString(),
+                                                      style: const TextStyle(
+                                                        fontSize: 12,
+                                                      )),
+                                                )
+                                              ],
+                                            ),
                                           ),
-                                        ))
+                                        )
                                       ],
                                     ),
                                   ),
